@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: platform-engineering-reference
+  description: Reference architecture for Kubernetes platform engineering
+  annotations:
+    github.com/project-slug: marcocristofolini/platform-engineering-reference
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/marcocristofolini

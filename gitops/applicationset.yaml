@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: platform-reference
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - environment: dev
+          - environment: staging
+  template:
+    metadata:
+      name: 'platform-reference-{{environment}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/marcocristofolini/platform-engineering-reference.git
+        targetRevision: main
+        path: 'platform/overlays/{{environment}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: platform-reference
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
